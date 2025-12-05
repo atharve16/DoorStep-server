@@ -1,6 +1,7 @@
 package com.doostep.server.controller;
 
 import com.doostep.server.model.UserEntity;
+import com.doostep.server.model.UserResponseDTO;
 import com.doostep.server.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
@@ -37,18 +39,35 @@ public class UserController {
     }
 
     @PostMapping("/newUser")
-    public ResponseEntity<String> createUser(@RequestBody UserEntity user){
-        String rsp = service.createNew(user);
-        return new ResponseEntity<>(rsp, HttpStatus.OK);
+    public ResponseEntity<?> createUser(@RequestBody UserEntity user){
+        Optional<UserEntity> finder = service.getByEmailOptional(user.getEmail());
+
+        if(finder.isEmpty()){
+            UserEntity savedUser = service.save(user);
+
+            // Return user object without password
+            UserResponseDTO response = new UserResponseDTO(
+                    savedUser.getId(),
+                    savedUser.getName(),
+                    savedUser.getEmail()
+            );
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } else {
+            return ResponseEntity.status(409).body("User Already Exist!");
+        }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserEntity loginUser, HttpSession session) {
-        UserEntity user = service.getByEmail(loginUser.getEmail());
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserEntity loginUser) {
+        UserEntity user = service.getByEmail(loginUser.getEmail());
         if (user != null && user.getPassword().equals(loginUser.getPassword())) {
-            session.setAttribute("userId", user.getId());
-            return ResponseEntity.ok("Login successful");
+            UserResponseDTO response = new UserResponseDTO(
+                    user.getId(),
+                    user.getName(),
+                    user.getEmail()
+            );
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(401).body("Invalid email or password");
         }

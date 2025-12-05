@@ -27,14 +27,14 @@ public class security {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         return http
                 .cors(Customizer.withDefaults())
                 .csrf(custom -> custom.disable())
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers("/","/api/user/**", "/api/data").permitAll()
-                                .anyRequest().authenticated())
+                                .requestMatchers("/", "/api/user/login", "/api/user/newUser", "/api/data").permitAll()
+                                .requestMatchers("/api/user/**").authenticated()
+                                .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -44,13 +44,17 @@ public class security {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("https://doorstep-seven.vercel.app/" ,"http://localhost:5173/"));
+        config.setAllowedOrigins(Arrays.asList(
+                "https://doorstep-seven.vercel.app",
+                "http://localhost:5173"
+        ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-        config.setAllowCredentials(true); // Optional if using cookies or HTTP Basic Auth
+        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowCredentials(true);
+        config.setExposedHeaders(Arrays.asList("Authorization"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config); // applies to all routes
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 

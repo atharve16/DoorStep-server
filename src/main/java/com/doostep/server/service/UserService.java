@@ -49,6 +49,14 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public UserEntity save(UserEntity user) {
+        return repo.save(user);
+    }
+
+    public Optional<UserEntity> getByEmailOptional(String email) {
+        return repo.findByEmail(email);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<UserEntity> user = repo.findByEmail(email);

@@ -1,4 +1,4 @@
-package com.panthera.server.config;
+package com.doostep.server.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +44,7 @@ public class security {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("https://doorstep-seven.vercel.app/"));
+        config.setAllowedOrigins(Arrays.asList("https://doorstep-seven.vercel.app/" ,"http://localhost:5173/"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         config.setAllowCredentials(true); // Optional if using cookies or HTTP Basic Auth

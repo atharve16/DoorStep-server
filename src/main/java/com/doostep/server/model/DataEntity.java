@@ -1,4 +1,4 @@
-package com.panthera.server.model;
+package com.doostep.server.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

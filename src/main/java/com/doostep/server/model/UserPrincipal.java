@@ -1,4 +1,4 @@
-package com.panthera.server.model;
+package com.doostep.server.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

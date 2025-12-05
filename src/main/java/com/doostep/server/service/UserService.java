@@ -1,8 +1,8 @@
-package com.panthera.server.service;
+package com.doostep.server.service;
 
-import com.panthera.server.model.UserEntity;
-import com.panthera.server.model.UserPrincipal;
-import com.panthera.server.repo.UserRepo;
+import com.doostep.server.model.UserEntity;
+import com.doostep.server.model.UserPrincipal;
+import com.doostep.server.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,6 @@
-package com.panthera.server.repo;
+package com.doostep.server.repo;
 
-import com.panthera.server.model.UserEntity;
+import com.doostep.server.model.UserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

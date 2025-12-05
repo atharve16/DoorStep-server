@@ -1,4 +1,4 @@
-package com.panthera.server;
+package com.doostep.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

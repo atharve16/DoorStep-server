@@ -1,7 +1,7 @@
-package com.panthera.server.controller;
+package com.doostep.server.controller;
 
-import com.panthera.server.model.UserEntity;
-import com.panthera.server.service.UserService;
+import com.doostep.server.model.UserEntity;
+import com.doostep.server.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

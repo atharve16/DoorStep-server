@@ -1,4 +1,4 @@
-package com.panthera.server;
+package com.doostep.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
-package com.panthera.server.controller;
+package com.doostep.server.controller;
 
-import com.panthera.server.model.DataEntity;
-import com.panthera.server.repo.DataRepo;
+import com.doostep.server.model.DataEntity;
+import com.doostep.server.repo.DataRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
